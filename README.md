@@ -116,9 +116,9 @@ Brand Personality Dimensions:
 ## Research Foundation
 
 The tool implements research findings and methodologies from:
-- Labrecque & Milne (2013): "Exciting Red and Competent Blue: The Importance of Color in Marketing"
-- Singh (2006): "Impact of Color on Marketing"
-- Elliot & Maier (2014): "Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans"
+- Labrecque & Milne (2013): “Exciting Red and Competent Blue: The Importance of Color in Marketing”
+- Singh (2006): “Impact of Color on Marketing”
+- Elliot & Maier (2014): “Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans”
 
 ## Contributing
 
