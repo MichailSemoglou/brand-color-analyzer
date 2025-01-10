@@ -7,13 +7,13 @@ and marketing. The tool provides detailed analysis of colors including brand per
 emotional responses, and cultural associations.
 
 Research Foundation:
-------------------
-- Labrecque & Milne (2013): Brand personality dimensions and color relationships
-- Singh (2006): Impact of color on marketing
-- Elliot & Maier (2014): Color psychology effects and cultural influences
+--------------------
+- Labrecque & Milne (2013): Exciting Red and Competent Blue: The Importance of Color in Marketing
+- Singh (2006): Impact of Color on Marketing
+- Elliot & Maier (2014): Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans
 
 Features:
---------
+---------
 - Research-based color analysis
 - Brand personality dimension analysis
 - Emotional response evaluation
@@ -23,11 +23,11 @@ Features:
 - Multiple output formats (JSON, TXT)
 
 Installation:
-------------
+-------------
 pip install -r requirements.txt
 
 Usage:
------
+------
 Single image analysis:
     python brand_color_analyzer.py path/to/image.jpg output/directory
 
@@ -44,7 +44,7 @@ Copyright (c) 2025 Michail Semoglou
 All rights reserved.
 
 Contact:
--------
+--------
 Author: Michail Semoglou
 Email: m.semoglou@tongji.edu.cn
 GitHub: https://github.com/MichailSemoglou
@@ -52,7 +52,7 @@ GitHub: https://github.com/MichailSemoglou
 License: MIT
 
 Citation:
---------
+---------
 If you use this tool in academic work, please cite:
     APA
     Semoglou, M. (2025). Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing (Version 1.0.0). Retrieved from https://github.com/MichailSemoglou/brand-color-analyzer
