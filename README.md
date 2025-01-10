@@ -94,7 +94,7 @@ python brand_color_analyzer.py path/to/image/directory output/directory
 ### Text Output
 ```
 Color Analysis Results
-=====================
+======================
 
 Color Information:
   Name: Red
