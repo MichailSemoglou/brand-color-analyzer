@@ -7,13 +7,13 @@ and marketing. The tool provides detailed analysis of colors including brand per
 emotional responses, and cultural associations.
 
 Research Foundation:
---------------------
-- Labrecque & Milne (2013): Exciting Red and Competent Blue: The Importance of Color in Marketing
-- Singh (2006): Impact of Color on Marketing
-- Elliot & Maier (2014): Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans
+-------------------
+- Labrecque & Milne (2013): "Exciting Red and Competent Blue: The Importance of Color in Marketing"
+- Singh (2006): "Impact of Color on Marketing"
+- Elliot & Maier (2014): "Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans"
 
 Features:
----------
+--------
 - Research-based color analysis
 - Brand personality dimension analysis
 - Emotional response evaluation
@@ -23,11 +23,11 @@ Features:
 - Multiple output formats (JSON, TXT)
 
 Installation:
--------------
+------------
 pip install -r requirements.txt
 
 Usage:
-------
+-----
 Single image analysis:
     python brand_color_analyzer.py path/to/image.jpg output/directory
 
@@ -37,14 +37,14 @@ Batch processing:
 Options:
     --min-frequency   Minimum color frequency to analyze (default: 5.0)
     --max-frequency   Maximum color frequency to analyze (default: 100.0)
-    --format         Output format: json or txt (default: json)
-    -v, --verbose    Increase output verbosity
+    --format          Output format: json or txt (default: json)
+    -v, --verbose     Increase output verbosity
 
 Copyright (c) 2025 Michail Semoglou
 All rights reserved.
 
 Contact:
---------
+-------
 Author: Michail Semoglou
 Email: m.semoglou@tongji.edu.cn
 GitHub: https://github.com/MichailSemoglou
@@ -52,7 +52,7 @@ GitHub: https://github.com/MichailSemoglou
 License: MIT
 
 Citation:
----------
+--------
 If you use this tool in academic work, please cite:
     APA
     Semoglou, M. (2025). Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing (Version 1.0.0). Retrieved from https://github.com/MichailSemoglou/brand-color-analyzer
@@ -402,7 +402,7 @@ class ColorConverter:
                 closest_name = name
         
         return closest_name.replace('_', ' ').title()
-    
+
 class ColorAnalyzer:
     """Main class for color analysis incorporating research-based findings."""
     
@@ -508,7 +508,267 @@ class ColorAnalyzer:
             ruggedness=self._calculate_ruggedness(h, s, v, brown_influence, green_influence)
         )
 
-    # ... [previous calculation methods remain the same] ...
+    def _calculate_sincerity(self, h: float, s: float, v: float, yellow_influence: float) -> float:
+        """Calculate sincerity score based on color properties."""
+        # White influence (low saturation, high value)
+        white_influence = (1 - s) * v
+        
+        # Pink influence (around 350° hue)
+        pink_influence = max(0, 1 - min(abs(h - 350), abs(h - (-10))) / 20) * s * v
+        
+        # Calculate weighted score (0-100)
+        score = (
+            white_influence * 40 +
+            yellow_influence * 35 +
+            pink_influence * 25
+        )
+        
+        return min(100, max(0, score))
+        
+    def _calculate_excitement(self, h: float, s: float, v: float, red_influence: float) -> float:
+        """Calculate excitement score based on color properties."""
+        # Orange influence (around 30° hue)
+        orange_influence = max(0, 1 - abs(h - 30) / 15) if 15 <= h <= 45 else 0
+        
+        # Yellow influence calculated in main method
+        yellow_influence = max(0, 1 - abs(h - 60) / 30) if 30 <= h <= 90 else 0
+        
+        # Intensity factor
+        intensity = s * v
+        
+        # Calculate weighted score (0-100)
+        score = (
+            red_influence * 45 +
+            orange_influence * 30 +
+            yellow_influence * 25
+        ) * intensity
+        
+        return min(100, max(0, score))
+        
+    def _calculate_competence(self, h: float, s: float, v: float, blue_influence: float) -> float:
+        """Calculate competence score based on color properties."""
+        # Brown influence
+        brown_influence = s * (1 - v) if 20 <= h <= 40 else 0
+        
+        # Intensity for blue
+        blue_intensity = s * v
+        
+        # Calculate weighted score (0-100)
+        score = (
+            blue_influence * blue_intensity * 70 +
+            brown_influence * 30
+        )
+        
+        return min(100, max(0, score))
+        
+    def _calculate_sophistication(self, h: float, s: float, v: float, purple_influence: float) -> float:
+        """Calculate sophistication score based on color properties."""
+        # Black influence (low value)
+        black_influence = 1 - v
+        
+        # Pink influence (around 350° hue)
+        pink_influence = max(0, 1 - min(abs(h - 350), abs(h - (-10))) / 20) * s * v
+        
+        # Calculate weighted score (0-100)
+        score = (
+            black_influence * 40 +
+            purple_influence * 35 +
+            pink_influence * 25
+        )
+        
+        return min(100, max(0, score))
+        
+    def _calculate_ruggedness(self, h: float, s: float, v: float, brown_influence: float, green_influence: float) -> float:
+        """Calculate ruggedness score based on color properties."""
+        # Intensity factor
+        intensity = s * v
+        
+        # Calculate weighted score (0-100)
+        score = (
+            brown_influence * 60 +
+            green_influence * intensity * 40
+        )
+        
+        return min(100, max(0, score))
+
+    def _analyze_emotional_response(self, hsv: HSV) -> EmotionalResponse:
+        """
+        Analyze emotional responses based on color properties.
+        
+        Args:
+            hsv: HSV color values
+            
+        Returns:
+            EmotionalResponse object with response scores
+            
+        Raises:
+            ColorValidationError: If HSV values are invalid
+        """
+        hsv = ColorValidator.validate_hsv(hsv)
+        h, s, v = hsv
+        
+        # Calculate base influences
+        warm_hue = max(0, 1 - min(abs(h - 30), abs(h - 350)) / 30)  # Red-orange-yellow range
+        cool_hue = max(0, 1 - abs(h - 210) / 60)  # Blue-green range
+        
+        # Intensity factors
+        intensity = s * v
+        muted_factor = (1 - s) * v
+        
+        return EmotionalResponse(
+            arousal=self._calculate_arousal(h, s, v, warm_hue, intensity),
+            pleasure=self._calculate_pleasure(h, s, v, warm_hue, cool_hue),
+            dominance=self._calculate_dominance(h, s, v),
+            warmth=self._calculate_warmth(h, s, v, warm_hue),
+            calmness=self._calculate_calmness(h, s, v, cool_hue, muted_factor)
+        )
+
+    def _calculate_arousal(self, h: float, s: float, v: float, warm_hue: float, intensity: float) -> float:
+        """Calculate arousal score based on color properties."""
+        # High arousal: Saturated warm colors
+        warm_arousal = warm_hue * intensity * 100
+        
+        # Moderate arousal: High value, high saturation cool colors
+        cool_arousal = (1 - warm_hue) * intensity * 70
+        
+        score = max(warm_arousal, cool_arousal)
+        return min(100, max(0, score))
+
+    def _calculate_pleasure(self, h: float, s: float, v: float, warm_hue: float, cool_hue: float) -> float:
+        """Calculate pleasure score based on color properties."""
+        # Warm colors contribution
+        warm_pleasure = warm_hue * s * v * 90
+        
+        # Cool colors contribution
+        cool_pleasure = cool_hue * s * v * 70
+        
+        # Light colors contribution (high value, low-medium saturation)
+        light_pleasure = v * (1 - s) * 80
+        
+        score = max(warm_pleasure, cool_pleasure, light_pleasure)
+        return min(100, max(0, score))
+
+    def _calculate_dominance(self, h: float, s: float, v: float) -> float:
+        """Calculate dominance score based on color properties."""
+        # Strong, saturated colors increase dominance
+        saturation_factor = s * 0.7
+        
+        # Dark colors (low value) also contribute to dominance
+        darkness_factor = (1 - v) * 0.3
+        
+        score = (saturation_factor + darkness_factor) * 100
+        return min(100, max(0, score))
+
+    def _calculate_warmth(self, h: float, s: float, v: float, warm_hue: float) -> float:
+        """Calculate warmth score based on color properties."""
+        # Warm colors with moderate to high saturation and value
+        score = warm_hue * s * v * 100
+        return min(100, max(0, score))
+
+    def _calculate_calmness(self, h: float, s: float, v: float, cool_hue: float, muted_factor: float) -> float:
+        """Calculate calmness score based on color properties."""
+        # Cool, muted colors increase calmness
+        cool_calmness = cool_hue * muted_factor * 100
+        
+        # Light, low-saturation colors also contribute
+        light_calmness = v * (1 - s) * 80
+        
+        score = max(cool_calmness, light_calmness)
+        return min(100, max(0, score))
+
+    def _analyze_cultural_associations(self, hsv: HSV) -> CulturalAssociations:
+        """
+        Analyze cultural associations based on color properties.
+        
+        Args:
+            hsv: HSV color values
+            
+        Returns:
+            CulturalAssociations object with association scores
+            
+        Raises:
+            ColorValidationError: If HSV values are invalid
+        """
+        hsv = ColorValidator.validate_hsv(hsv)
+        h, s, v = hsv
+        
+        # Calculate base influences
+        blue_influence = max(0, 1 - abs(h - 210) / 30) if 180 <= h <= 240 else 0
+        gold_influence = max(0, 1 - abs(h - 45) / 15) * s * v if 30 <= h <= 60 else 0
+        silver_influence = (1 - s) * v if v > 0.7 else 0
+        
+        return CulturalAssociations(
+            trust=self._calculate_trust(h, s, v, blue_influence),
+            quality=self._calculate_quality(h, s, v, gold_influence, silver_influence),
+            premium=self._calculate_premium(h, s, v, gold_influence),
+            innovation=self._calculate_innovation(h, s, v),
+            tradition=self._calculate_tradition(h, s, v)
+        )
+
+    def _calculate_trust(self, h: float, s: float, v: float, blue_influence: float) -> float:
+        """Calculate trust score based on color properties."""
+        # Blue is highly associated with trust
+        blue_trust = blue_influence * s * v * 100
+        
+        # Conservative colors (low saturation, high value) also contribute
+        conservative_trust = (1 - s) * v * 70
+        
+        score = max(blue_trust, conservative_trust)
+        return min(100, max(0, score))
+
+    def _calculate_quality(self, h: float, s: float, v: float, gold_influence: float, silver_influence: float) -> float:
+        """Calculate quality score based on color properties."""
+        # Gold and silver tones suggest quality
+        metallic_quality = max(gold_influence * 100, silver_influence * 90)
+        
+        # Deep, rich colors (high saturation, medium-low value)
+        rich_quality = s * (1 - v) * 80
+        
+        score = max(metallic_quality, rich_quality)
+        return min(100, max(0, score))
+
+    def _calculate_premium(self, h: float, s: float, v: float, gold_influence: float) -> float:
+        """Calculate premium score based on color properties."""
+        # Gold tones highly correlate with premium perception
+        gold_premium = gold_influence * 100
+        
+        # Dark, rich colors also suggest premium quality
+        dark_premium = s * (1 - v) * 80
+        
+        # Black (very low value) is associated with premium
+        black_premium = (1 - v) * (1 - s) * 90 if v < 0.2 else 0
+        
+        score = max(gold_premium, dark_premium, black_premium)
+        return min(100, max(0, score))
+
+    def _calculate_innovation(self, h: float, s: float, v: float) -> float:
+        """Calculate innovation score based on color properties."""
+        # Bright, saturated colors suggest innovation
+        bright_factor = s * v
+        
+        # Purple and blue hues are associated with innovation
+        tech_hue = max(0, 1 - min(abs(h - 270), abs(h - 210)) / 45)
+        
+        # Unique combinations of high saturation and unusual hues
+        uniqueness = s * (1 - max(0, 1 - min(abs(h - 180), abs(h - 300)) / 30))
+        
+        score = (bright_factor * 0.4 + tech_hue * 0.4 + uniqueness * 0.2) * 100
+        return min(100, max(0, score))
+
+    def _calculate_tradition(self, h: float, s: float, v: float) -> float:
+        """Calculate tradition score based on color properties."""
+        # Earth tones (browns, deep reds)
+        earth_tone = max(0, 1 - min(abs(h - 30), abs(h - 0)) / 30) * s * (1 - v)
+        
+        # Deep, muted colors
+        muted_depth = (1 - s) * (1 - v)
+        
+        # Classic navy blue
+        navy = max(0, 1 - abs(h - 220) / 20) * s * (1 - v) if 200 <= h <= 240 else 0
+        
+        score = (earth_tone * 0.4 + muted_depth * 0.3 + navy * 0.3) * 100
+        return min(100, max(0, score))
+
 
 class ImageAnalyzer:
     """Class for analyzing colors in images."""
@@ -571,8 +831,14 @@ class ImageAnalyzer:
                 width, height = img.size
                 pixel_count = width * height
                 
-                # Get color counts
-                colors = Counter(img.getdata())
+                # Convert image to RGB data array
+                rgb_data = list(img.getdata())
+                
+                # Ensure RGB format for all colors (take only RGB components)
+                rgb_tuples = [tuple(c[:3]) for c in rgb_data]
+                
+                # Count color frequencies
+                colors = Counter(rgb_tuples)
                 
                 # Sort colors by frequency
                 sorted_colors = sorted(colors.items(), key=lambda x: x[1], reverse=True)
@@ -587,12 +853,15 @@ class ImageAnalyzer:
                         break
                     if frequency > self.max_frequency:
                         continue
-                        
+                    
+                    # Ensure color is a valid RGB tuple
+                    rgb_color = tuple(int(c) for c in color[:3])
+                    
                     analysis = {
-                        "color": color,
+                        "color": rgb_color,
                         "frequency": round(frequency, 2),
                         "analysis": self.color_analyzer.analyze_color(
-                            color, 
+                            rgb_color, 
                             output_format=output_format
                         )
                     }
@@ -616,7 +885,7 @@ class ImageAnalyzer:
                 
         except Exception as e:
             logger.error(f"Error analyzing image {path}: {str(e)}")
-            raise
+            raise  # Raise inside the except block
 
     def _format_analysis_as_text(self, analysis: Dict[str, Any]) -> str:
         """Convert analysis results to formatted text."""
