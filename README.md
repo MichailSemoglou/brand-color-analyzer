@@ -181,7 +181,6 @@ When using the default JSON format, you'll get structured data that's ideal for 
 * **Low percentages (0-40%)** indicate minimal alignment
 
 For example, the red color above scores high on "Excitement" (85%) and "Arousal" (95%), making it excellent for brands wanting to appear energetic and attention-grabbing, but may not be ideal for brands focusing on calmness (10%) or trustworthiness (25%).
-```
 
 ## Contributing
 
