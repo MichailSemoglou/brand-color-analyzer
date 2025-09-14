@@ -17,7 +17,7 @@ A comprehensive tool for analyzing brand colors based on empirical research in c
 ## Research Foundation
 
 The tool implements research findings and methodologies from:
-- Labrecque & Milne (2013): "Exciting Red and Competent Blue: The Importance of Color in Marketing"
+- Labrecque & Milne (2012): "Exciting Red and Competent Blue: The Importance of Color in Marketing"
 - Singh (2006): "Impact of Color on Marketing"
 - Elliot & Maier (2014): "Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans"
 
@@ -218,4 +218,3 @@ Semoglou, Michail. 2025. "Brand Color Analyzer: A Research-Based Tool for Color 
 
 - Author: Michail Semoglou
 - Email: m.semoglou@tongji.edu.cn
-- GitHub: https://github.com/MichailSemoglou
