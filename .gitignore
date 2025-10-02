@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Work files - analysis outputs and test images
+output/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
