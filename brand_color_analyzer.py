@@ -8,7 +8,7 @@ emotional responses, and cultural associations.
 
 Research Foundation:
 -------------------
-- Labrecque & Milne (2013): "Exciting Red and Competent Blue: The Importance of Color in Marketing"
+- Labrecque & Milne (2012): "Exciting Red and Competent Blue: The Importance of Color in Marketing"
 - Singh (2006): "Impact of Color on Marketing"
 - Elliot & Maier (2014): "Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans"
 
@@ -182,7 +182,7 @@ class ColorAttributes:
 class BrandPersonality:
     """
     Brand personality dimensions based on Aaker (1997) and
-    color relationships from Labrecque & Milne (2013).
+    color relationships from Labrecque & Milne (2012).
     
     Attributes:
         sincerity: White, pink, yellow associations (0-100)
@@ -478,7 +478,7 @@ class ColorAnalyzer:
 
     def _analyze_brand_personality(self, hsv: HSV) -> BrandPersonality:
         """
-        Analyze brand personality dimensions based on Labrecque & Milne (2013).
+        Analyze brand personality dimensions based on Labrecque & Milne (2012).
         
         Args:
             hsv: HSV color values
