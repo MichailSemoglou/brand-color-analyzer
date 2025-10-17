@@ -178,3 +178,6 @@ output/
 *.gif
 *.bmp
 *.tiff
+
+# Release guide (local reference only)
+RELEASE.md
