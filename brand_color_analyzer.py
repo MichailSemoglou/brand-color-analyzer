@@ -55,14 +55,14 @@ Citation:
 --------
 If you use this tool in academic work, please cite:
     APA
-    Semoglou, M. (2025). Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing (Version 1.1.0). Retrieved from https://github.com/MichailSemoglou/brand-color-analyzer
+    Semoglou, M. (2025). Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing (Version 1.1.1). Retrieved from https://github.com/MichailSemoglou/brand-color-analyzer
     MLA
     Semoglou, Michail. "Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing." 2025. GitHub, https://github.com/MichailSemoglou/brand-color-analyzer.
     Chicago
-    Semoglou, Michail. "Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing." Version 1.1.0. GitHub, 2025.
+    Semoglou, Michail. "Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing." Version 1.1.1. GitHub, 2025.
 """
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 import os
 import sys
