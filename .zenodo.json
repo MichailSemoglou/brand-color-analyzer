@@ -1,0 +1,36 @@
+{
+  "title": "Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing",
+  "description": "A comprehensive tool for analyzing brand colors based on empirical research in color psychology and marketing. The tool provides detailed analysis of colors including brand personality dimensions, emotional responses, and cultural associations. It implements research findings from Labrecque & Milne (2012), Singh (2006), and Elliot & Maier (2014) to provide scientifically-grounded insights into color perception and its impact on branding.",
+  "license": "MIT",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Semoglou, Michail",
+      "affiliation": "Tongji University",
+      "orcid": "0009-0003-3268-5657"
+    }
+  ],
+  "keywords": [
+    "color psychology",
+    "brand analysis",
+    "marketing research",
+    "color theory",
+    "brand personality",
+    "emotional response",
+    "cultural associations",
+    "image analysis",
+    "Python"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/MichailSemoglou/brand-color-analyzer",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "references": [
+    "Labrecque, L. I., & Milne, G. R. (2012). Exciting Red and Competent Blue: The Importance of Color in Marketing. Journal of the Academy of Marketing Science, 40(5), 711-727. https://doi.org/10.1007/s11747-010-0245-y",
+    "Singh, S. (2006). Impact of Color on Marketing. Management Decision, 44(6), 783-789. https://doi.org/10.1108/00251740610673332",
+    "Elliot, A. J., & Maier, M. A. (2014). Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans. Annual Review of Psychology, 65, 95-120. https://doi.org/10.1146/annurev-psych-010213-115035"
+  ]
+}
