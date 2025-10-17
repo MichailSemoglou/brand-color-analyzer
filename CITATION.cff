@@ -6,8 +6,9 @@ authors:
     email: m.semoglou@tongji.edu.cn
     orcid: https://orcid.org/0009-0003-3268-5657
 title: "Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing"
-version: 1.0.0
-date-released: 2025-01-13
+version: 1.1.0
+date-released: 2025-10-17
+doi: 10.5281/zenodo.17375219
 url: https://github.com/MichailSemoglou/brand-color-analyzer
 repository-code: https://github.com/MichailSemoglou/brand-color-analyzer
 license: MIT

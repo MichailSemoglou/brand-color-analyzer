@@ -1,5 +1,9 @@
 # Brand Color Analyzer
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17375219.svg)](https://doi.org/10.5281/zenodo.17375219)
+[![PyPI version](https://badge.fury.io/py/brand-color-analyzer.svg)](https://badge.fury.io/py/brand-color-analyzer)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+
 A comprehensive tool for analyzing brand colors based on empirical research in color psychology and marketing. The tool provides detailed analysis of colors including brand personality dimensions, emotional responses, and cultural associations.
 
 ## Features
@@ -17,25 +21,37 @@ A comprehensive tool for analyzing brand colors based on empirical research in c
 ## Research Foundation
 
 The tool implements research findings and methodologies from:
+
 - Labrecque & Milne (2012): "Exciting Red and Competent Blue: The Importance of Color in Marketing"
 - Singh (2006): "Impact of Color on Marketing"
 - Elliot & Maier (2014): "Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans"
 
 ## Installation
 
+### From PyPI (Recommended)
+
+```bash
+pip install brand-color-analyzer
+```
+
+### From Source
+
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/MichailSemoglou/brand-color-analyzer.git
 cd brand-color-analyzer
 ```
 
 2. Create and activate a virtual environment (recommended):
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 3. Install requirements:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -71,11 +87,13 @@ img_analyzer.save_analysis(analysis, output_dir / "color_analysis")  # Will add 
 ### Command Line Interface
 
 Single image analysis:
+
 ```bash
 python brand_color_analyzer.py path/to/image.jpg output/directory
 ```
 
 Batch processing:
+
 ```bash
 python brand_color_analyzer.py path/to/image/directory output/directory
 ```
@@ -132,10 +150,10 @@ Cultural Associations:
 
 #### What This Means for Design Students:
 
-* **Color Information:** Technical details about the exact color being analyzed
-* **Brand Personality:** How the color influences perception of a brand's character
-* **Emotional Responses:** The feelings and reactions the color is likely to evoke
-* **Cultural Associations:** Common meanings and perceptions associated with the color
+- **Color Information:** Technical details about the exact color being analyzed
+- **Brand Personality:** How the color influences perception of a brand's character
+- **Emotional Responses:** The feelings and reactions the color is likely to evoke
+- **Cultural Associations:** Common meanings and perceptions associated with the color
 
 ### JSON Output (Default)
 
@@ -176,9 +194,9 @@ When using the default JSON format, you'll get structured data that's ideal for 
 
 ### Interpreting the Results
 
-* **High percentages (70-100%)** indicate strong alignment with that attribute
-* **Medium percentages (40-70%)** indicate moderate alignment
-* **Low percentages (0-40%)** indicate minimal alignment
+- **High percentages (70-100%)** indicate strong alignment with that attribute
+- **Medium percentages (40-70%)** indicate moderate alignment
+- **Low percentages (0-40%)** indicate minimal alignment
 
 For example, the red color above scores high on "Excitement" (85%) and "Arousal" (95%), making it excellent for brands wanting to appear energetic and attention-grabbing, but may not be ideal for brands focusing on calmness (10%) or trustworthiness (25%).
 
@@ -190,29 +208,17 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## How to Cite
+## Citation
 
-If you use Brand Color Analyzer in your research or work, please cite it as follows:
+If you use this software in your research, please cite it using the DOI:
 
-### APA Format
-Semoglou, M. (2025). Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing (Version 1.0.0) [Software]. Retrieved from https://github.com/MichailSemoglou/brand-color-analyzer
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17375219.svg)](https://doi.org/10.5281/zenodo.17375219)
 
-### MLA Format
-Semoglou, Michail. "Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing." Version 1.0.0, 2025. GitHub, https://github.com/MichailSemoglou/brand-color-analyzer.
-
-### Chicago Format
-Semoglou, Michail. 2025. "Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing." Version 1.0.0. GitHub. https://github.com/MichailSemoglou/brand-color-analyzer.
-
-### BibTeX
-```bibtex
-@software{semoglou2025brandcolor,
-    author = {Semoglou, Michail},
-    title = {Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing},
-    year = {2025},
-    url = {https://github.com/MichailSemoglou/brand-color-analyzer},
-    version = {1.0.0}
-}
 ```
+Semoglou, M. (2025). Brand Color Analyzer: A Research-Based Tool for Color Psychology in Marketing (Version 1.1.0). Zenodo. https://doi.org/10.5281/zenodo.17375219
+```
+
+You can also use the "Cite this repository" feature on GitHub or refer to the [CITATION.cff](CITATION.cff) file for other citation formats.
 
 ## Contact
 
